@@ -21,6 +21,9 @@ class HeroSection(models.Model):
     # Contact and portfolio section
     contact_link = models.URLField(help_text='Link to the contact section.')
     portfolio_link = models.URLField(help_text='Link to the portfolio section.')
+    resume_file = models.FileField(upload_to='resumes/', blank=True, null=True, help_text='Upload your resume.')
+
+
 
     def __str__(self):
         return f'Hero Section - {self.name}'
