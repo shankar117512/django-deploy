@@ -128,6 +128,8 @@ class Certificate(models.Model):
             ("Symposium", "Symposium"),
             ("Competition", "Competition"),
             ("Certification", "Certification"),
+            ("Bootcamp", "Bootcamp"),
+            ("Course", "Course"),
         ],
         blank=True, null=True
     )  # Type of event

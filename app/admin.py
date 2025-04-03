@@ -56,10 +56,13 @@ class AboutMeAdmin(ImportExportModelAdmin):
     list_display = ('bio',)
 
 
+
 @admin.register(Certificate)
 class CertificateAdmin(ImportExportModelAdmin):
     resource_class = CertificateResource
-    list_display = ('title', 'tag')
+    list_display = ('title', 'tag', 'college', 'organizer', 'event_type', 'issued_date', 'level', 'category', 'won_prize')
+    list_filter = ('event_type', 'level', 'category', 'college', 'organizer', 'issued_date')  # Filter sidebar
+    search_fields = ('title', 'tag', 'college__name', 'organizer__name', 'won_prize')  # Searchable fields
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
@@ -67,5 +70,12 @@ class CertificateAdmin(ImportExportModelAdmin):
         form.base_fields["organizer"].widget.can_add_related = True  # Enables the Plus (+) icon
         return form
 
-admin.site.register(College)
-admin.site.register(Organizer)
+@admin.register(College)
+class CollegeAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)  # Enables search functionality
+
+@admin.register(Organizer)
+class OrganizerAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',) 
