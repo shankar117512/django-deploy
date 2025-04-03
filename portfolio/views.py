@@ -1,5 +1,7 @@
 from django.shortcuts import redirect,render
 from app.models import HeroSection,Project,Certificate,Course,AboutMe,Skill
+from collections import defaultdict 
+
 
 def BASE(request):
     hero_section = HeroSection.objects.first()
@@ -20,8 +22,5 @@ def BASE(request):
     return render(request,'Main/home.html',context)
 
 def CERTIFICATE(request):
-    certificates = Certificate.objects.all()
-    context = {
-        'certificates':certificates
-    }
-    return render(request,'Certificate/certificate.html',context)
+    certificates = Certificate.objects.all()  # No filtering by issued_date
+    return render(request, "Certificate/certificate.html", {'certificates': certificates})

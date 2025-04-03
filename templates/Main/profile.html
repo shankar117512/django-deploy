@@ -1,45 +1,114 @@
 {% load static %}
 
+<style>
+    #hero {
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-portrait {
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 6px solid #90EE90; /* Light Green Border */
+        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .social-icons a {
+        font-size: 1.5rem;
+        margin: 0 10px;
+        color: #333;
+    }
+
+    .call-to-action button {
+        margin-right: 15px;
+    }
+
+    @media (max-width: 992px) {
+        #hero .row {
+            flex-direction: column-reverse;
+        }
+
+        .hero-portrait {
+            width: 280px;
+            height: 280px;
+        }
+    }
+</style>
+
 <section id="hero">
-    <div class="container">     
-        <div class="row about-content">
-            <div class="col-lg-5 order-lg-2">
-                <div class="hero-portrait">
-                    <div class="pic" data-aos="fade-up" data-aos-delay="600">
-                        <!-- Example image -->
-                        {% comment %} <img height="500px" src="{{ hero_section.portrait_image.url }}" alt="Hero Portrait"> {% endcomment %}
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-7 order-lg-1 hero-content">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <!-- Hero Content (Left Side) -->
+            <div class="col-lg-5 text-center text-lg-start">
                 <span class="h3" data-aos="fade-up" data-aos-delay="0">{{ hero_section.greeting }}</span>
                 <h1 class="name" data-aos="fade-up" data-aos-delay="200"><span>{{ hero_section.name }}</span></h1>
-                <button type="button" class="btn btn-sm mt-3 mb-3 btn-showcase" data-aos="fade-up" data-aos-delay="400"><i class="bi bi-stars"></i> {{ hero_section.profession }}</button>
+                <button type="button" class="btn btn-sm mt-3 mb-3 btn-showcase" data-aos="fade-up" data-aos-delay="400">
+                    <i class="bi bi-stars"></i> {{ hero_section.profession }}
+                </button>
                 <p class="tagline mb-3" data-aos="fade-up" data-aos-delay="600">{{ hero_section.tagline }}</p>
-                <div class="social-icons pb-2 pt-2 mb-2">
+
+                <!-- Social Media Icons -->
+                <div class="social-icons pb-2 pt-2 mb-3">
                     {% if hero_section.github_link %}
-                        <a href="{{ hero_section.github_link }}" target="_blank" class="github" data-aos="fade-up" data-aos-delay="620"><i class="bi bi-github"></i></a>
+                        <a href="{{ hero_section.github_link }}" target="_blank" class="github" 
+                           data-aos="fade-up" data-aos-delay="620"><i class="bi bi-github"></i></a>
                     {% endif %}
                     {% if hero_section.twitter_link %}
-                        <a href="{{ hero_section.twitter_link }}" target="_blank" class="twitter-x" data-aos="fade-up" data-aos-delay="640"><i class="bi bi-twitter-x"></i></a>
+                        <a href="{{ hero_section.twitter_link }}" target="_blank" class="twitter-x" 
+                           data-aos="fade-up" data-aos-delay="640"><i class="bi bi-twitter-x"></i></a>
                     {% endif %}
                     {% if hero_section.instagram_link %}
-                        <a href="{{ hero_section.instagram_link }}" target="_blank" class="instagram" data-aos="fade-up" data-aos-delay="660"><i class="bi bi-instagram"></i></a>
+                        <a href="{{ hero_section.instagram_link }}" target="_blank" class="instagram" 
+                           data-aos="fade-up" data-aos-delay="660"><i class="bi bi-instagram"></i></a>
                     {% endif %}
                     {% if hero_section.youtube_link %}
-                        <a href="{{ hero_section.youtube_link }}" target="_blank" class="youtube" data-aos="fade-up" data-aos-delay="680"><i class="bi bi-youtube"></i></a>
+                        <a href="{{ hero_section.youtube_link }}" target="_blank" class="youtube" 
+                           data-aos="fade-up" data-aos-delay="680"><i class="bi bi-youtube"></i></a>
                     {% endif %}
                     {% if hero_section.linkedin_link %}
-                        <a href="{{ hero_section.linkedin_link }}" target="_blank" class="linkedin" data-aos="fade-up" data-aos-delay="690"><i class="bi bi-linkedin"></i></a>
+                        <a href="{{ hero_section.linkedin_link }}" target="_blank" class="linkedin" 
+                           data-aos="fade-up" data-aos-delay="690"><i class="bi bi-linkedin"></i></a>
                     {% endif %}
                     {% if hero_section.discord_link %}
-                        <a href="{{ hero_section.discord_link }}" target="_blank" class="discord" data-aos="fade-up" data-aos-delay="700"><i class="bi bi-discord"></i></a>
+                        <a href="{{ hero_section.discord_link }}" target="_blank" class="discord" 
+                           data-aos="fade-up" data-aos-delay="700"><i class="bi bi-discord"></i></a>
                     {% endif %}
                 </div>
-                <div class="d-flex call-to-action">
-                    <a href="{{ hero_section.contact_link }}" data-aos="fade-up" data-aos-delay="710"><button type="button" class="btn me-4 primary-bg-btn"><i class="bi bi-envelope"></i> Contact Me</button></a>
-                    <a href="{{ hero_section.resume_file }}" data-aos="fade-up" data-aos-delay="720"><button type="button" class="btn btn-light secondary-bg-btn">View Resume <i class="bi bi-arrow-up-right-circle"></i></button></a>
-                </div>                    
+
+                <!-- Call-to-Action Buttons -->
+                <div class="d-flex justify-content-center justify-content-lg-start flex-wrap call-to-action">
+                    <a href="{{ hero_section.contact_link }}" data-aos="fade-up" data-aos-delay="710">
+                        <button type="button" class="btn primary-bg-btn">
+                            <i class="bi bi-envelope"></i> Contact Me
+                        </button>
+                    </a>
+                    <a href="{{ hero_section.resume_file }}" data-aos="fade-up" data-aos-delay="720">
+                        <button type="button" class="btn btn-light secondary-bg-btn">
+                            View Resume <i class="bi bi-arrow-up-right-circle"></i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Image (Right Side) -->
+            <div class="col-lg-5 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="600">
+                <div class="hero-portrait">
+                    <img src="{{ hero_section.portrait_image.url }}" alt="Hero Portrait">
+                </div>
             </div>
         </div>
     </div>

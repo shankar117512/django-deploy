@@ -2,8 +2,11 @@
 
 <section id="projects">
     <div class="container">
-        <h6 class="text-center"><span class="btn btn-sm theme-button theme-text">What I've done?</span></h6>
+        <h6 class="text-center">
+            <span class="btn btn-sm theme-button theme-text">What I've done?</span>
+        </h6>
         <h2 class="section-heading text-center">Projects</h2>
+        
         <div class="row justify-content-center mt-4 gy-4" data-aos="fade-up" data-aos-delay="200">
             {% for project in projects %}
             <div class="col-lg-4 col-md-6">
@@ -11,27 +14,39 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="col-2">
-                                <!-- Media file URL -->
-                                <img src="{{ project.icon.url }}" class="img-fluid icon" alt="{{ project.title }} Logo">
+                                <!-- Google Drive Image (Icon) -->
+                                <img src="{{ project.icon_url }}" 
+                                     class="img-fluid icon" 
+                                     alt="{{ project.title }} Logo" loading="lazy">
                             </div>
                             <div class="col-7 p-0">
-                                <a href="{{ project.url }}" class="card-title title" target="_blank">{{ project.title }}</a>
+                                <a href="{{ project.url }}" class="card-title title" target="_blank">
+                                    {{ project.title }}
+                                </a>
                                 <p class="stacks m-0">{{ project.stacks }}</p>
                             </div>
-                            <div class="col-3 align-middle">
-                                <a href="{{ project.url }}" class="btn btn-sm primary-bg-btn rounded-5" target="_blank">Visit <i class="bi bi-arrow-up-right-circle-fill"></i></a>
+                            <div class="col-3 text-end">
+                                <a href="{{ project.url }}" class="btn btn-sm primary-bg-btn rounded-5" target="_blank">
+                                    Visit <i class="bi bi-arrow-up-right-circle-fill"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="description-container">
                         <p class="description">{{ project.description }}</p>
                     </div>
+                    
                     <div class="banner-container">
                         <div class="overlay">
-                            <a href="{{ project.url }}" class="btn" target="_blank"><i class="bi bi-arrow-up-right-circle-fill"></i></a>
+                            <a href="{{ project.url }}" class="btn" target="_blank">
+                                <i class="bi bi-arrow-up-right-circle-fill"></i>
+                            </a>
                         </div>
-                        <!-- Media file URL -->
-                        <img src="{{ project.banner.url }}" class="card-img-top banner" alt="{{ project.title }} Banner">
+                        <!-- Google Drive Image (Banner) -->
+                        <img src="{{ project.banner_url }}" 
+                             class="card-img-top banner" 
+                             alt="{{ project.title }} Banner" loading="lazy">
                     </div>
                 </div>
             </div>

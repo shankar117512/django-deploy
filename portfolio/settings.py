@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'app',
+    'import_export'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,5 @@ STATICSTORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = "/Media/"
+# MEDIA_ROOT = BASE_DIR / "Media"

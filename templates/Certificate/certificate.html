@@ -1,39 +1,65 @@
-{%extends 'base.html' %}
-
+{% extends 'base.html' %}
 {% load static %}
 
-{%block content%}
+{% block content %}
 <section id="certificates">
     <div class="container position-relative">
-        <h6 class="text-center"><span class="btn btn-sm theme-button theme-text">Do I Write?</span></h6>
+        <h6 class="text-center">
+            <span class="btn btn-sm theme-button theme-text">Do I Write?</span>
+        </h6>
         <h2 class="section-heading text-center">Certificates</h2>
         <p class="text-center muted-text mt-3 mb-4">From Symposium to many more</p>
-        <!-- View All Button -->
+
         <div class="row justify-content-center gy-4" data-aos="fade-up" data-aos-delay="600">
             {% for certificate in certificates %}
             <div class="col-lg-4 col-md-6">
-                <div class="card article-card">
+                <div class="card article-card shadow-lg">
                     <div class="banner-container position-relative">
                         <div class="position-absolute top-0 end-0">
                             {% if certificate.tag %}
-                            <span class="badge">{{ certificate.tag }}</span>
+                            <span class="badge bg-dark text-white">{{ certificate.tag }}</span>
                             {% endif %}
                         </div>
-                        <img src="{{ certificate.image.url }}" class="card-img-top banner" alt="{{ certificate.title }}">
+                        <img src="{{ certificate.image_url }}" class="card-img-top banner" alt="{{ certificate.title }}">
                     </div>
                     <div class="card-body">
                         <h6 class="card-title">{{ certificate.title }}</h6>
+                        {% if certificate.description %}
                         <p class="card-text description">{{ certificate.description }}</p>
-                        <a href="{{ certificate.url }}" class="text-decoration-none" target="_blank">
-                            <span class="read-more">Read More <i class="bi bi-arrow-up-right"></i></span>
+                        {% endif %}
+                        <hr>
+                        <p class="small text-muted">
+                            {% if certificate.category %}
+                            <strong>Category:</strong> {{ certificate.category }} <br>
+                            {% endif %}
+                            {% if certificate.college %}
+                            <strong>College:</strong> {{ certificate.college.name }} <br>
+                            {% endif %}
+                            {% if certificate.organizer %}
+                            <strong>Organizer:</strong> {{ certificate.organizer.name }} <br>
+                            {% endif %}
+                            {% if certificate.won_prize %}
+                            <strong>Prize Won:</strong> {{ certificate.won_prize }} <br>
+                            {% endif %}
+                            {% if certificate.level %}
+                            <strong>Level:</strong> {{ certificate.level }} <br>
+                            {% endif %}
+                            {% if certificate.event_type %}
+                            <strong>Event Type:</strong> {{ certificate.event_type }}
+                            {% endif %}
+                        </p>
+                        {% if certificate.url %}
+                        <a href="{{ certificate.url }}" class="text-decoration-none btn btn-sm btn-outline-primary" target="_blank">
+                            View Certificate <i class="bi bi-arrow-up-right"></i>
                         </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
+            {% empty %}
+            <p class="text-center text-warning">No certificates available.</p>
             {% endfor %}
         </div>
     </div>
 </section>
-</br>
-</br>
 {% endblock %}

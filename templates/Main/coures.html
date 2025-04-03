@@ -14,7 +14,8 @@
                             <span class="badge">{{ course.tag }}</span>
                             {% endif %}
                         </div>
-                        <img src="{{ course.image.url }}" class="card-img-top banner" alt="{{ course.title }}">
+                        <!-- Use Google Drive Image URL -->
+                        <img src="{{ course.image_url }}" class="card-img-top banner" alt="{{ course.title }}">
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">{{ course.title }}</h3>
