@@ -22,5 +22,5 @@ def BASE(request):
     return render(request,'Main/home.html',context)
 
 def CERTIFICATE(request):
-    certificates = Certificate.objects.all()  # No filtering by issued_date
+    certificates = Certificate.objects.order_by('-id') # No filtering by issued_date
     return render(request, "Certificate/certificate.html", {'certificates': certificates})
