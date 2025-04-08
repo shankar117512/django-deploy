@@ -1,47 +1,80 @@
 {% load static %}
 <section id="certificates">
     <div class="container position-relative">
-        <h6 class="text-center"><span class="btn btn-sm theme-button theme-text">Do I Write?</span></h6>
+        <h6 class="text-center">
+            <span class="btn btn-sm theme-button theme-text">Do I Write?</span>
+        </h6>
         <h2 class="section-heading text-center">Certificates</h2>
         <p class="text-center muted-text mt-3 mb-4">From Symposium to many more</p>
-        <!-- View All Button -->
+
+        <!-- Certificate Cards -->
         <div class="row justify-content-center gy-4" data-aos="fade-up" data-aos-delay="600">
             {% for certificate in certificates %}
             <div class="col-lg-4 col-md-6">
-                <div class="card article-card">
+                <div class="card article-card shadow">
                     <div class="banner-container position-relative">
+                        {% if certificate.tag %}
                         <div class="position-absolute top-0 end-0">
-                            {% if certificate.tag %}
-                            <span class="badge">{{ certificate.tag }}</span>
-                            {% endif %}
+                            <span class="badge bg-dark text-white">{{ certificate.tag }}</span>
                         </div>
+                        {% endif %}
                         <img src="{{ certificate.image_url }}" class="card-img-top banner" alt="{{ certificate.title }}">
                     </div>
                     <div class="card-body">
                         <h6 class="card-title">{{ certificate.title }}</h6>
+                        {% if certificate.description %}
                         <p class="card-text description">{{ certificate.description }}</p>
-                        <a href="{{ certificate.url }}" class="text-decoration-none" target="_blank">
-                            <span class="read-more">Read More <i class="bi bi-arrow-up-right"></i></span>
-                        </a>
+                        {% endif %}
+                        <hr>
+                        <p class="small text-muted">
+                            {% if certificate.category %}
+                            <strong>Category:</strong> {{ certificate.category }} <br>
+                            {% endif %}
+                            {% if certificate.event_type %}
+                            <strong>Event Type:</strong> {{ certificate.event_type }} <br>
+                            {% endif %}
+                            {% if certificate.college %}
+                            <strong>College:</strong> {{ certificate.college.name }} <br>
+                            {% endif %}
+                            {% if certificate.organizer %}
+                            <strong>Organizer:</strong> {{ certificate.organizer.name }} <br>
+                            {% endif %}
+                            {% if certificate.level %}
+                            <strong>Level:</strong> {{ certificate.level }} <br>
+                            {% endif %}
+                            {% if certificate.won_prize %}
+                            <strong>Prize Won:</strong> {{ certificate.won_prize }} <br>
+                            {% endif %}
+                            {% if certificate.issued_date %}
+                            <strong>Issued Date:</strong> {{ certificate.issued_date }} <br>
+                            {% endif %}
+                        </p>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-        <div class="view-all-btn-container">
-            <a href="{% url 'certificates' %}" class="btn btn-primary view-all-btn">View All Certificates</a>
 
+        <!-- View All Button -->
+        <div class="text-center mt-4">
+            <a href="{% url 'certificates' %}" class="btn btn-outline-primary view-all-btn">
+                View All Certificates
+            </a>
         </div>
     </div>
 </section>
-</br>
-</br>
-<style>
-    .view-all-btn-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 1.5rem; /* Adjust the margin as needed */
-    }
-    
 
+<style>
+.view-all-btn {
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    border: 2px solid #0d6efd;
+}
+
+.view-all-btn:hover {
+    background-color: #0d6efd;
+    color: white;
+}
 </style>

@@ -4,65 +4,54 @@
 {% block content %}
 <section id="certificates">
     <div class="container position-relative">
-        <h6 class="text-center">
-            <span class="btn btn-sm theme-button theme-text">Do I Write?</span>
-        </h6>
         <h2 class="section-heading text-center">Certificates</h2>
-        <p class="text-center muted-text mt-3 mb-4">From Symposium to many more</p>
+        <p class="text-center muted-text mt-3 mb-4">Grouped by College / Organizer</p>
 
-        <div class="row justify-content-center gy-4" data-aos="fade-up" data-aos-delay="600">
-            {% for certificate in certificates %}
-            <div class="col-lg-4 col-md-6">
-                <div class="card article-card shadow-lg">
-                    <div class="banner-container position-relative">
-                        {% if certificate.tag %}
-                        <div class="position-absolute top-0 end-0">
-                            <span class="badge bg-dark text-white">{{ certificate.tag }}</span>
+        {% for group_title, certs in grouped_certificates.items %}
+        <div class="mb-5">
+            <h4 class="text-center text-primary mb-4">{{ group_title }}</h4>
+
+            <div class="row justify-content-center gy-4">
+                {% for certificate in certs %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card article-card shadow-lg">
+                        <div class="banner-container position-relative">
+                            {% if certificate.tag %}
+                            <div class="position-absolute top-0 end-0">
+                                <span class="badge bg-dark text-white">{{ certificate.tag }}</span>
+                            </div>
+                            {% endif %}
+                            <img src="{{ certificate.image_url }}" class="card-img-top banner" alt="{{ certificate.title }}">
                         </div>
-                        {% endif %}
-                        <img src="{{ certificate.image_url }}" class="card-img-top banner" alt="{{ certificate.title }}">
-                    </div>
-                    <div class="card-body">
-                        <h6 class="card-title">{{ certificate.title }}</h6>
-                        {% if certificate.description %}
-                        <p class="card-text description">{{ certificate.description }}</p>
-                        {% endif %}
-                        <hr>
-                        <p class="small text-muted">
-                            {% if certificate.category %}
-                            <strong>Category:</strong> {{ certificate.category }} <br>
+                        <div class="card-body">
+                            <h6 class="card-title">{{ certificate.title }}</h6>
+                            {% if certificate.description %}
+                            <p class="card-text description">{{ certificate.description }}</p>
                             {% endif %}
-                            {% if certificate.event_type %}
-                            <strong>Event Type:</strong> {{ certificate.event_type }} <br>
+                            <hr>
+                            <p class="small text-muted">
+                                {% if certificate.category %}<strong>Category:</strong> {{ certificate.category }} <br>{% endif %}
+                                {% if certificate.event_type %}<strong>Event Type:</strong> {{ certificate.event_type }} <br>{% endif %}
+                                {% if certificate.college %}<strong>College:</strong> {{ certificate.college.name }} <br>{% endif %}
+                                {% if certificate.organizer %}<strong>Organizer:</strong> {{ certificate.organizer.name }} <br>{% endif %}
+                                {% if certificate.level %}<strong>Level:</strong> {{ certificate.level }} <br>{% endif %}
+                                {% if certificate.won_prize %}<strong>Prize Won:</strong> {{ certificate.won_prize }} <br>{% endif %}
+                                {% if certificate.issued_date %}<strong>Issued Date:</strong> {{ certificate.issued_date }} <br>{% endif %}
+                            </p>
+                            {% if certificate.url %}
+                            <a href="{{ certificate.url }}" class="text-decoration-none btn btn-sm btn-outline-primary" target="_blank">
+                                View Certificate <i class="bi bi-arrow-up-right"></i>
+                            </a>
                             {% endif %}
-                            {% if certificate.college %}
-                            <strong>College:</strong> {{ certificate.college.name }} <br>
-                            {% endif %}
-                            {% if certificate.organizer %}
-                            <strong>Organizer:</strong> {{ certificate.organizer.name }} <br>
-                            {% endif %}
-                            {% if certificate.level %}
-                            <strong>Level:</strong> {{ certificate.level }} <br>
-                            {% endif %}
-                            {% if certificate.won_prize %}
-                            <strong>Prize Won:</strong> {{ certificate.won_prize }} <br>
-                            {% endif %}
-                            {% if certificate.issued_date %}
-                            <strong>Issued Date:</strong> {{ certificate.issued_date }} <br>
-                            {% endif %}
-                        </p>
-                        {% if certificate.url %}
-                        <a href="{{ certificate.url }}" class="text-decoration-none btn btn-sm btn-outline-primary" target="_blank">
-                            View Certificate <i class="bi bi-arrow-up-right"></i>
-                        </a>
-                        {% endif %}
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% empty %}
-            <p class="text-center text-warning">No certificates available.</p>
-            {% endfor %}
         </div>
+        {% empty %}
+        <p class="text-center text-warning">No certificates available.</p>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
-from .models import HeroSection, Project, Certificate, Course, Skill, AboutMe,College,Organizer
+from .models import HeroSection, Project, Certificate, Course, Skill, AboutMe,College,Organizer,EventList
 
 # Define resources for all models
 class HeroSectionResource(resources.ModelResource):
@@ -59,6 +59,7 @@ class AboutMeAdmin(ImportExportModelAdmin):
 
 @admin.register(Certificate)
 class CertificateAdmin(ImportExportModelAdmin):
+    list_per_page=20
     resource_class = CertificateResource
     list_display = ('title', 'tag', 'college', 'organizer', 'event_type', 'issued_date', 'level', 'category', 'won_prize')
     list_filter = ('event_type', 'level', 'category', 'college', 'organizer', 'issued_date')  # Filter sidebar
@@ -71,11 +72,17 @@ class CertificateAdmin(ImportExportModelAdmin):
         return form
 
 @admin.register(College)
-class CollegeAdmin(admin.ModelAdmin):
+class CollegeAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)  # Enables search functionality
 
 @admin.register(Organizer)
-class OrganizerAdmin(admin.ModelAdmin):
+class OrganizerAdmin(ImportExportModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',) 
+
+
+@admin.register(EventList)
+class EventListAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',) 

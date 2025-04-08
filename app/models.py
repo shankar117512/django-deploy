@@ -108,6 +108,12 @@ class Organizer(models.Model):
     def __str__(self):
         return self.name
 
+class EventList(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name
+
 class Certificate(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(max_length=300, null=True, blank=True)
@@ -121,18 +127,7 @@ class Certificate(models.Model):
     organizer = models.ForeignKey(Organizer, on_delete=models.SET_NULL, null=True, blank=True)
     won_prize = models.CharField(max_length=50, blank=True, null=True)  # e.g., "1st Place", "2nd Runner-Up"
 
-    event_type = models.CharField(
-        max_length=50, choices=[
-            ("Hackathon", "Hackathon"),
-            ("Workshop", "Workshop"),
-            ("Symposium", "Symposium"),
-            ("Competition", "Competition"),
-            ("Certification", "Certification"),
-            ("Bootcamp", "Bootcamp"),
-            ("Course", "Course"),
-        ],
-        blank=True, null=True
-    )  # Type of event
+    event_type = models.ForeignKey(EventList,default=1, on_delete=models.SET_NULL, null=True, blank=True)  # Type of event
 
     issued_date = models.DateField(blank=True, null=True)  # Date issued
     level = models.CharField(
