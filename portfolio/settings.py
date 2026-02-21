@@ -16,7 +16,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-CSRF_TRUSTED_ORIGINS= ["https://django-deploy-production-437c.up.railway.app"]
+CSRF_TRUSTED_ORIGINS= ["https://django-deploy-production-feb4.up.railway.app"]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -25,9 +25,9 @@ CSRF_TRUSTED_ORIGINS= ["https://django-deploy-production-437c.up.railway.app"]
 SECRET_KEY = "django-insecure-%t!*it15gpnr2*lego0_3@l=$drjajm8ihs_$93u!wcmy5iaif"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['django-deploy-production-feb4.up.railway.app']
 
 # DATABASE_URL = "postgresql://postgres:WkoHIFshxOlrZIudZYwNdaEUjIJmVefe@viaduct.proxy.rlwy.net:53205/railway"
 
